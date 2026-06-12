@@ -1,0 +1,7 @@
+previous_outcome,last_contact_recency,contacts,conversions,conversion_rate_pct
+success,within 1 week,1127,749.0,66.5
+success,1-4 weeks ago,246,145.0,58.9
+failure,1-4 weeks ago,92,48.0,52.2
+failure,within 1 week,50,25.0,50.0
+failure,never contacted,4110,532.0,12.9
+nonexistent,never contacted,35551,3140.0,8.8
