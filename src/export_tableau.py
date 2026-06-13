@@ -38,6 +38,7 @@ AGGREGATES = {
         SELECT 'previous_outcome', poutcome, COUNT(*), SUM(converted),
                ROUND(100.0 * AVG(converted), 2)
         FROM contacts GROUP BY poutcome
+        ORDER BY 1, 5 DESC
     """,
     "agg_month_channel": """
         SELECT month_num, month, contact AS channel,
