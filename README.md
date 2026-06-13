@@ -68,15 +68,49 @@ analytical warehouse · SQL for the analysis layer · Tableau for the dashboard
     └── DASHBOARD.md                   # dashboard design & build notes
 ```
 
-## Reproducing the analysis
+## Getting started
+
+**Prerequisites:** Python 3.10+ and `pip`. (Tableau Desktop or the free
+[Tableau Public](https://public.tableau.com) is only needed if you want to
+rebuild the dashboard.)
+
+**1. Clone the repository**
+
+```bash
+git clone https://github.com/devpro2410/bank-marketing-campaign-analytics.git
+cd bank-marketing-campaign-analytics
+```
+
+**2. (Optional) create a virtual environment**
+
+```bash
+python -m venv .venv
+source .venv/bin/activate        # Windows: .venv\Scripts\activate
+```
+
+**3. Install dependencies**
 
 ```bash
 pip install -r requirements.txt
-python src/prepare_data.py     # clean data, build data/bank_marketing.duckdb
-python src/run_analysis.py     # run all SQL, export result tables
-python src/make_charts.py      # regenerate figures
-python src/export_tableau.py   # regenerate Tableau extracts
 ```
+
+**4. Run the pipeline**
+
+The raw dataset is already included, so you can run the steps in order:
+
+```bash
+python src/prepare_data.py     # clean data, build data/bank_marketing.duckdb
+python src/run_analysis.py     # run all SQL queries -> outputs/tables/*.csv
+python src/make_charts.py      # regenerate the figures in outputs/figures/
+python src/export_tableau.py   # regenerate the Tableau extracts
+```
+
+That's it — query results land in `outputs/tables/`, charts in
+`outputs/figures/`, and dashboard-ready files in `tableau/extracts/`. To explore
+interactively instead, open `notebooks/01_exploratory_analysis.ipynb`.
+
+> The raw CSV ships with the repo. If you ever need to re-fetch it from source,
+> run `python src/download_data.py`.
 
 ## Methodology notes
 
