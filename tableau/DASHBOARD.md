@@ -1,5 +1,7 @@
 # Tableau Dashboard — Campaign Performance & Targeting
 
+**🔗 Live:** https://public.tableau.com/app/profile/sivansh.satpathy/viz/Book1_17813492980260/Dashboard1
+
 The dashboard is built on the extracts in `tableau/extracts/`
 (regenerate them with `python src/export_tableau.py`).
 

@@ -6,8 +6,10 @@ history, contact frequency and channel engagement drove conversion — and what
 the bank should change in its next campaign.
 
 **Stack:** Python (pandas) for ingestion and cleaning · DuckDB as a local
-analytical warehouse · SQL for the analysis layer · Tableau for the dashboard
-· matplotlib/seaborn for report figures.
+analytical warehouse · SQL for the analysis layer · Tableau for the interactive
+dashboard · matplotlib/seaborn for exploratory charts in the notebook.
+
+**🔗 [Live interactive dashboard on Tableau Public](https://public.tableau.com/app/profile/sivansh.satpathy/viz/Book1_17813492980260/Dashboard1)**
 
 ## Headline findings
 
@@ -18,17 +20,18 @@ analytical warehouse · SQL for the analysis layer · Tableau for the dashboard
 | **Students (31%) and retirees (25%)** convert at 2–3x the average; conversion is U-shaped in age while the over-targeted 35–54 core sits *below* average. | `sql/02_conversion_by_segment.sql` |
 | **Cellular converts at ~3x landline** (14.7% vs 5.2%), consistently across every month of the campaign. | `sql/05_channel_and_timing.sql` |
 
-### Contact fatigue
-![Contact fatigue](outputs/figures/01_contact_fatigue.png)
+## Dashboard
 
-### Customer history
-![Customer history](outputs/figures/02_customer_history.png)
+An interactive Tableau dashboard ties the four findings together — customer
+history, contact fatigue, segment conversion and channel-by-month — with a
+shared age-band filter that re-slices every view at once.
 
-### Segments
-![Segment conversion](outputs/figures/03_segment_conversion.png)
+[**▶ Explore the live dashboard**](https://public.tableau.com/app/profile/sivansh.satpathy/viz/Book1_17813492980260/Dashboard1)
 
-### Channel & timing
-![Channel by month](outputs/figures/04_channel_by_month.png)
+![Bank Marketing Campaign dashboard](tableau/dashboard.png)
+
+Build notes (calculated fields, worksheet layout) are in
+[`tableau/DASHBOARD.md`](tableau/DASHBOARD.md).
 
 ## Recommendations
 
@@ -58,13 +61,12 @@ analytical warehouse · SQL for the analysis layer · Tableau for the dashboard
 │   ├── download_data.py               # (re)fetch the raw extract
 │   ├── prepare_data.py                # clean + build DuckDB warehouse
 │   ├── run_analysis.py                # run sql/ -> outputs/tables/
-│   ├── make_charts.py                 # report figures
 │   └── export_tableau.py              # dashboard extracts
 ├── outputs/
-│   ├── figures/                       # report charts (PNG)
 │   └── tables/                        # query results (CSV)
 └── tableau/
     ├── extracts/                      # Tableau-ready data
+    ├── dashboard.png                  # dashboard preview
     └── DASHBOARD.md                   # dashboard design & build notes
 ```
 
@@ -101,13 +103,12 @@ The raw dataset is already included, so you can run the steps in order:
 ```bash
 python src/prepare_data.py     # clean data, build data/bank_marketing.duckdb
 python src/run_analysis.py     # run all SQL queries -> outputs/tables/*.csv
-python src/make_charts.py      # regenerate the figures in outputs/figures/
 python src/export_tableau.py   # regenerate the Tableau extracts
 ```
 
-That's it — query results land in `outputs/tables/`, charts in
-`outputs/figures/`, and dashboard-ready files in `tableau/extracts/`. To explore
-interactively instead, open `notebooks/01_exploratory_analysis.ipynb`.
+That's it — query results land in `outputs/tables/` and dashboard-ready files
+in `tableau/extracts/`. To explore the analysis interactively (with charts),
+open `notebooks/01_exploratory_analysis.ipynb`.
 
 > The raw CSV ships with the repo. If you ever need to re-fetch it from source,
 > run `python src/download_data.py`.
