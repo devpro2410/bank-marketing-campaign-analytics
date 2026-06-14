@@ -17,4 +17,4 @@ SELECT
     ROUND(100.0 * AVG(converted), 1)          AS conversion_rate_pct
 FROM contacts
 GROUP BY 1, 2
-ORDER BY conversion_rate_pct DESC;
+ORDER BY conversion_rate_pct DESC, previous_outcome, last_contact_recency;

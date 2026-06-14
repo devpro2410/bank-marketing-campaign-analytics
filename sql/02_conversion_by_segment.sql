@@ -21,4 +21,4 @@ WITH segmented AS (
 )
 SELECT *
 FROM segmented
-ORDER BY dimension, conversion_rate_pct DESC;
+ORDER BY dimension, conversion_rate_pct DESC, segment;
